@@ -1,3 +1,5 @@
+import Request from "./request.js"
+
 export default class Cards {
     async getMoviesExample(){
         const response  = await fetch("/exampleDB.json")
@@ -17,7 +19,8 @@ export default class Cards {
             imgArray.push(item)
         }
 
-        console.log(imgArray)
+     const request = new Request()
+     request.getMultipleInfo(imgArray)
     }
 
 
