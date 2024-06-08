@@ -3,14 +3,14 @@ import Request from "./request.js"
 export default class Cards {
     async getMoviesExample(){
         const response  = await fetch("/exampleDB.json")
-        const  json = await response.json()
+        const json = await response.json()
 
         this.getImages(json)
-    }
+    }   
 
     getImages(json){
 
-        const values = object.values(json)
+        const values = Object.values(json)
         const imgArray = []
 
         while(imgArray.length <= 11){
