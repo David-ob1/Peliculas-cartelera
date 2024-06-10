@@ -21,8 +21,13 @@ export default class Display{
 
             imgArray[i].forEach((movie,i) =>{
                 this.card.children[0].setAttribute("src",`${movie}`)
-                this.card.children[1].children[0]
+                this.card.children[1].children[0].innerText = moviesTitles[i]
+
+                this.clone =  this.template.cloneNode(true)
+                this.fragment.appendChild(this.clone)
             })
+
+            row.appendChild(this.fragment)
 
         })
     }
@@ -32,4 +37,40 @@ export default class Display{
         const right = left.splice(0,Math.ceil(left.length / 2))
         return [left, right]
     }
+
+    displayUserCards(){
+        this.clearMovies()
+        this.filterUserCards()
+    }
+
+    filterUserCards(){
+    const sliceMovies = this.moviesInfo.slice(0,6)
+    
+    sliceMovies.forEach( movie =>{
+        this.assignInfo(movie)
+
+        this.clone = this.template.cloneNode(true)
+        this.fragment.appendChild(this.clone)
+    })
+    this.container.appendChild(this.fragment)
+    this.container.style.display = "flex"
+    }
+
+    assignInfo(movie){
+        const newCardImg = this.card.children[0]
+        const newCardBody = this.card.children[1]
+
+        newCardImg.setAttribute("src",`${movie.Poster}`)
+        newCardBody.children[0].innerText = movie.Title
+
+    }
+
+    clearMovies(){
+        while(this.container.firstChild){
+            this.container.firstChild.remove()
+        }
+
+
+    }
+
 }

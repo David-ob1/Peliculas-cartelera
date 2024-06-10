@@ -1,3 +1,4 @@
+import Checker from "./checker.js"
 import Display from "./display.js"
 export default class Request{
 
@@ -5,6 +6,33 @@ export default class Request{
         this.template = document.querySelector(".card-template").content
 
     }
+
+       async getInfo(inputValue){
+        try{
+
+            let encodedItem = encodeURIComponent(inputValue);
+            const  url =` http://www.omdbapi.com/?s=${encodedItem}&apikey=ed80730b`
+            const response = await fetch(url)
+            const json = await response.json()
+           
+
+            const container = document.querySelector(".new-row")
+
+            const display = new Display(json.Search,this.template,container)
+
+            console.log(json)
+            display.displayUserCards()
+
+        }catch (error){
+            const checker = new Checker()
+            checker.getErrorContainer("Movie not found!")
+
+        }
+
+
+        }
+ 
+
 
     getMultipleInfo(moviesName){
         const moviesInfo = [[],[]]

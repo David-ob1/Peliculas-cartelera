@@ -1,11 +1,18 @@
+import Request from "./request.js"
+
 export default  class Checker{
 
     verifyInput(){
 
         const inputValue = document.querySelector(".my-input")
 
-        if (inputValue.value ==""){
+        if (inputValue.value == ""){
            this.getErrorContainer("You must fill in all of the fields")
+        }else {
+            const request = new Request()
+            request.getInfo(inputValue.value)
+
+            inputValue.value = ""
         }
     }
 
