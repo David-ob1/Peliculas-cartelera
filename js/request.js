@@ -11,7 +11,7 @@ export default class Request{
         try{
 
             let encodedItem = encodeURIComponent(inputValue);
-            const  url =` http://www.omdbapi.com/?s=${encodedItem}&apikey=ed80730b`
+            const  url =` https://www.omdbapi.com/?s=${encodedItem}&apikey=ed80730b`
             const response = await fetch(url)
             const json = await response.json()
            
@@ -40,7 +40,7 @@ export default class Request{
             return new Promise(async (resolve) =>{
                 try{
                     let encodedItem = encodeURIComponent(item);
-                    const  url =` http://www.omdbapi.com/?t=${encodedItem}&apikey=ed80730b`
+                    const  url =` https://www.omdbapi.com/?t=${encodedItem}&apikey=ed80730b`
 
                     // const  url =` http://www.omdbapi.com/?t=${item}&apikey=ed80730b`
                     // The Lord of the Rings
